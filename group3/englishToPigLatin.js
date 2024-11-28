@@ -22,7 +22,7 @@ function translateWord(word) {
 }
 
 // Split the phrase into words
-// translate and combine them
+// translate and combine
 const words = inputPhrase.split(" ");
 let pigLatinWords = [];
 
