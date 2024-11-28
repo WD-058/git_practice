@@ -9,3 +9,19 @@
 // Example:
 // node caesarCipher.js "hello world" 3
 // # Output: khoor zruog
+
+const arr = process.argv;
+const phrase = arr[2];
+const shift = parseInt(arr[3]);
+
+function shiftChar(char, shift) {
+  if (char !== ' ') {
+  const code = char.charCodeAt(0);
+  return String.fromCharCode(code + shift)
+  }
+  return char;
+}
+
+const output = phrase.split('').map(char => shiftChar(char, shift)).join('');
+
+console.log(output)
