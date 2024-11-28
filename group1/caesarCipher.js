@@ -9,3 +9,25 @@
 // Example:
 // node caesarCipher.js "hello world" 3
 // # Output: khoor zruog
+
+const phrase = process.argv[2];
+const shift = parseInt(process.argv[3]);
+
+function caesarCipher(phrase, shift) {
+  let result = "";
+  phrase.split(``).forEach((letter) => {
+    if (letter >= "a" && letter <= "z") {
+      result += String.fromCharCode(
+        ((((letter.charCodeAt(0) - 97 + shift) % 26) + 26) % 26) + 97
+      );
+    } else if (letter >= "A" && letter <= "Z") {
+      result += String.fromCharCode(
+        ((((letter.charCodeAt(0) - 65 + shift) % 26) + 26) % 26) + 65
+      );
+    } else {
+      result += letter;
+    }
+  });
+  return result;
+}
+console.log(caesarCipher(phrase, shift));
