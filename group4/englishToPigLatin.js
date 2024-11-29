@@ -12,3 +12,100 @@
 // Example:
 // node pigLatin.js "Pig Latin is hard to speak"
 // # Output: Igpay Atinlay isway ardhay otay eakspay
+
+const toTranslate = process.argv.slice(2).join(" ");
+
+console.log("Translating your phrase to Pig Latin...");
+
+const consonants = [
+  "B",
+  "C",
+  "D",
+  "F",
+  "G",
+  "H",
+  "J",
+  "K",
+  "L",
+  "M",
+  "N",
+  "P",
+  "Q",
+  "R",
+  "S",
+  "T",
+  "V",
+  "W",
+  "X",
+  "Y",
+  "Z",
+  "b",
+  "c",
+  "d",
+  "f",
+  "g",
+  "h",
+  "j",
+  "k",
+  "l",
+  "m",
+  "n",
+  "p",
+  "q",
+  "r",
+  "s",
+  "t",
+  "v",
+  "w",
+  "x",
+  "y",
+  "z",
+];
+
+const vowels = ["A", "E", "I", "O", "U", "a", "e", "i", "o", "u"];
+
+let words = toTranslate.split(" ");
+let piggySentence = null;
+words.forEach((word) => {
+  let piggyWord;
+  let firstLetter = word[0];
+  let secondLetter = word[1];
+
+  if (consonants.includes(firstLetter) && vowels.includes(secondLetter)) {
+    let rest = word.slice(1);
+    if (firstLetter === firstLetter.toUpperCase()) {
+      piggyWord =
+        rest[0].toUpperCase() +
+        rest.slice(1) +
+        firstLetter.toLowerCase() +
+        "ay";
+    } else {
+      piggyWord = rest + firstLetter.toLowerCase() + "ay";
+    }
+  }
+
+  if (consonants.includes(firstLetter) && consonants.includes(secondLetter)) {
+    let rest = word.slice(2);
+    if (firstLetter === firstLetter.toUpperCase()) {
+      piggyWord =
+        rest[0].toUpperCase() +
+        rest.slice(1) +
+        firstLetter.toLowerCase() +
+        secondLetter +
+        "ay";
+    } else {
+      piggyWord = rest + firstLetter.toLowerCase() + secondLetter + "ay";
+    }
+  }
+
+  if (vowels.includes(firstLetter)) {
+    piggyWord = word + "way";
+  }
+  if (!piggySentence) {
+    piggySentence = piggyWord + " ";
+  } else {
+    piggySentence += piggyWord + " ";
+  }
+});
+
+console.log(piggySentence);
