@@ -12,3 +12,34 @@
 // Example:
 // node pigLatin.js "Pig Latin is hard to speak"
 // # Output: Igpay Atinlay isway ardhay otay eakspay
+
+// console.log(process.argv);
+
+let word; // let everyone know there is a variable with the name "word"
+
+const vowels = "aeiou";
+let result; //declaring variable, let everyone know there is a variable "result"
+const N = process.argv.length;
+for (
+  //now starts a loop
+  let counter = 2; //looping as of word in position 2
+  counter < N; //loop condition is verified
+  counter = counter + 1 //if true, loop update
+) {
+  word = process.argv[counter];
+  if (vowels.indexOf(word[0]) >= 0) {
+    result = word + "way";
+  } else {
+    //not a vowel
+    if (vowels.indexOf(word[1]) >= 0) {
+      //second letter is a vowel
+      result = word.substring(1); // the result is substring starting at position 1 of word
+      result = result + word[0]; // append letter at position zero of word
+    } else {
+      result = word.substring(2); //the result is the substring starting at position 2 of word
+      result = result + word.substring(0, 2); //append the substring starting at position 0 and ending at position 2
+    }
+    result = result + "ay";
+  }
+  console.log(result); //console log the result output, write the value of result to console
+}
